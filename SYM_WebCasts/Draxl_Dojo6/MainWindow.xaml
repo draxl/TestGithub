@@ -1,0 +1,60 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Draxl_Dojo6"
+        xmlns:ViewModel="clr-namespace:Draxl_Dojo6.ViewModel" x:Class="Draxl_Dojo6.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <ListBox ItemsSource="{Binding LegoCollection}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding LegoSetImage}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox ItemsSource="{Binding LegoCollection}" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="70" Width="200" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding LegoSetImage}" />
+                            <StackPanel Grid.Column="1" >
+                                <Label Content="{Binding LegoSetDescription}" />
+                                <Label Content="{Binding AgeRecommendation}" />
+                            </StackPanel>
+                            <Button Content="Add to Cart" Grid.Column="2" ></Button>
+                        </Grid>
+                    </Border>
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox ItemsSource="{Binding ShoppingCart}" Grid.Row="1" Grid.ColumnSpan="2" >
+            
+        </ListBox>
+
+    </Grid>
+</Window>
